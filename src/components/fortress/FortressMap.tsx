@@ -2,13 +2,17 @@
 type FortressMapProps = {
   location?: string;
   size?: number;
+  responsive?: boolean;
 };
 
-export default function FortressMap({ location = "Unknown", size = 160 }: FortressMapProps) {
+export default function FortressMap({ location = "Unknown", size = 160, responsive = true }: FortressMapProps) {
+  const sizeStyle = responsive ? undefined : { width: size, height: size };
+  const responsiveClass = responsive ? "w-32 h-32 sm:w-40 sm:h-40 md:w-52 md:h-52" : "";
+  
   return (
     <div
-      style={{ width: size, height: size }}
-      className="flex items-center justify-center border rounded-md bg-white text-sm text-gray-600"
+      style={sizeStyle}
+      className={`flex items-center justify-center border rounded-md bg-white text-sm text-gray-600 ${responsiveClass}`}
       title={location}
     >
       <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
